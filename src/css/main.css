@@ -1,0 +1,41 @@
+.main-title {
+  justify-self: center;
+  color: powderblue;
+}
+.gallery {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+.gallery-image {
+  border-radius: 10px;
+}
+.feedback-form {
+    color: brown;
+  font-size: 14px;
+  background-color: papayawhip;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  padding: 24px 48px;
+  gap: 8px;
+  border-radius: 16px;
+}
+.submit-btn {
+  padding: 8px;
+  background-color: burlywood;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+}
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color: brown;
+}
+.input-line {
+  padding: 6px;
+  border: 1px solid burlywood;
+}
