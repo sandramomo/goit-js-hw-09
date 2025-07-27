@@ -1,18 +1,19 @@
 const form = document.querySelector('.feedback-form');
-const formData = {
+let formData = {
   message: '',
   email: '',
 };
 form.addEventListener('input', handleFormInput);
 form.addEventListener('submit', handleFormSubmit);
-document.addEventListener('DOMContentLoaded', handleDOMLoad);
+handleDOMLoad();
 
 function handleFormInput(e) {
   formData.email = e.currentTarget.elements.email.value;
   formData.message = e.currentTarget.elements.message.value;
   saveToLS('feedback-form-state', formData);
 }
-function handleFormSubmit() {
+function handleFormSubmit(e) {
+  e.preventDefault();
   if (formData.email.trim() === '' || formData.message.trim() === '') {
     alert('Fill all fields please');
   } else {
@@ -38,7 +39,5 @@ function getFromLS(key) {
   try {
     const data = JSON.parse(jsonData);
     return data;
-  } catch {
-    return jsonData;
-  }
+  } catch {}
 }
