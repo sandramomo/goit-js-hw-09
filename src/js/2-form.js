@@ -3,9 +3,9 @@ let formData = {
   message: '',
   email: '',
 };
+handleDOMLoad();
 form.addEventListener('input', handleFormInput);
 form.addEventListener('submit', handleFormSubmit);
-handleDOMLoad();
 
 function handleFormInput(e) {
   formData.email = e.currentTarget.elements.email.value;
@@ -17,14 +17,19 @@ function handleFormSubmit(e) {
   if (formData.email.trim() === '' || formData.message.trim() === '') {
     alert('Fill all fields please');
   } else {
-    console.log(formData);
+    
     localStorage.removeItem('feedback-form-state');
     form.reset();
+    formData = {
+      message: '',
+      email: '',
+    };
+    console.log(formData);
   }
 }
 function handleDOMLoad() {
-  const lsData = getFromLS('feedback-form-state');
   try {
+    const lsData = getFromLS('feedback-form-state');
     form.elements.email.value = lsData.email;
     form.elements.message.value = lsData.message;
     formData = lsData;
