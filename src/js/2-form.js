@@ -12,27 +12,29 @@ function handleFormInput(e) {
   formData.message = e.currentTarget.elements.message.value;
   saveToLS('feedback-form-state', formData);
 }
+
 function handleFormSubmit(e) {
   e.preventDefault();
   if (formData.email.trim() === '' || formData.message.trim() === '') {
     alert('Fill all fields please');
+    return;
   } else {
-    
+    const saveUserData = { ...formData };
     localStorage.removeItem('feedback-form-state');
     form.reset();
     formData = {
       message: '',
       email: '',
     };
-    console.log(formData);
+    console.log(saveUserData);
   }
 }
 function handleDOMLoad() {
   try {
     const lsData = getFromLS('feedback-form-state');
-    form.elements.email.value = lsData.email;
-    form.elements.message.value = lsData.message;
-    formData = lsData;
+    form.elements.email.value = lsData.email || '';
+    form.elements.message.value = lsData.message || '';
+    formData = lsData || '';
   } catch {}
 }
 function saveToLS(key, value) {
