@@ -34,7 +34,10 @@ function handleDOMLoad() {
     const lsData = getFromLS('feedback-form-state');
     form.elements.email.value = lsData.email || '';
     form.elements.message.value = lsData.message || '';
-    formData = lsData || '';
+    formData =
+      lsData && typeof lsData === 'object'
+        ? lsData
+        : { email: '', message: '' };
   } catch {}
 }
 function saveToLS(key, value) {
